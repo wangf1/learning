@@ -128,3 +128,75 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+ENV/
+VENV/
+.pytest_cache/
+.mypy_cache/
+.pdm/
+poetry.lock
+Pipfile.lock
+.pytype/
+
+# C#
+*.exe
+*.dll
+*.pdb
+*.mdb
+*.cache
+*.ilk
+*.log
+*.mlm
+*.ncb
+*.obj
+*.o
+*.tlb
+*.tlh
+*.tmp
+*.vspscc
+*.vssscc
+.builds
+*.user
+*.rsuser
+*.suo
+*.sln.docstates
+
+# Rider
+.idea/
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.history/
+
+# LangChain
+**/langchain/
+
+# Hugging Face
+**/transformers/
+**/datasets/
+**/tokenizers/
+**/modelcards/
+
+# Apollo GraphQL
+**/apollo/
+**/apollo-server/
+**/graphql-tools/
+**/graphql-modules/
+**/graphql-code-generator/
+**/graphql-playground/
