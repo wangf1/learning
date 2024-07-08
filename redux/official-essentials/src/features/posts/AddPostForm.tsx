@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks"
-import { addPost, selectPosts } from "@/src/features/posts/postsSlice"
+import { addPost, selectAll } from "@/src/features/posts/postsSlice"
 import type { ChangeEvent, MouseEvent } from "react"
 import { useState } from "react"
 
@@ -7,7 +7,7 @@ export default function AddPostForm() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const dispatch = useAppDispatch()
-  const posts = useAppSelector(selectPosts)
+  const posts = useAppSelector(selectAll)
 
   const onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
@@ -30,7 +30,7 @@ export default function AddPostForm() {
   return (
     <section
       className="border-2 p-6 my-2 min-w-[50%] max-w-fit rounded-lg
-        bg-slate-100"
+        bg-slate-100 mx-3"
     >
       <h2 className="text-3xl font-bold">Add a New Post</h2>
       <form>

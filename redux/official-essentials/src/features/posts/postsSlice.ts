@@ -23,10 +23,11 @@ export const postsSlice = createAppSlice({
   }),
 
   selectors: {
-    selectPosts: posts => posts,
+    selectAll: posts => posts,
+    selectPost: (posts, id) => posts.find(post => post.id === id),
   },
 })
 
-export const { selectPosts } = postsSlice.selectors
+export const { selectAll, selectPost } = postsSlice.selectors
 
 export const { addPost } = postsSlice.actions

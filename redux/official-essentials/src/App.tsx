@@ -7,6 +7,7 @@ import {
   Routes,
 } from "react-router-dom"
 import { Navbar } from "./app/Navbar"
+import SinglePostPage from "@/src/features/posts/SinglePostPage"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 </>
               }
             />
+            <Route path="/posts/:id" element={<SinglePostPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
