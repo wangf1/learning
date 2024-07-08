@@ -1,3 +1,4 @@
+import type { PayloadAction } from "@reduxjs/toolkit"
 import { createAppSlice } from "../../app/createAppSlice"
 
 export interface Post {
@@ -15,7 +16,11 @@ export const postsSlice = createAppSlice({
   name: "posts",
   initialState,
 
-  reducers: {},
+  reducers: create => ({
+    addPost: create.reducer((state, action: PayloadAction<Post>) => {
+      state.push(action.payload)
+    }),
+  }),
 
   selectors: {
     selectPosts: posts => posts,
@@ -23,3 +28,5 @@ export const postsSlice = createAppSlice({
 })
 
 export const { selectPosts } = postsSlice.selectors
+
+export const { addPost } = postsSlice.actions

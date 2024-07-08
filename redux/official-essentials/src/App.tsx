@@ -1,3 +1,4 @@
+import AddPostForm from "@/src/features/posts/AddPostForm"
 import PostsList from "@/src/features/posts/PostsList"
 import {
   Navigate,
@@ -14,7 +15,15 @@ function App() {
         <Navbar />
         <div>
           <Routes>
-            <Route path="/" element={<PostsList />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <AddPostForm />
+                  <PostsList />
+                </>
+              }
+            />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
