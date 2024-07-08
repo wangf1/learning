@@ -14,13 +14,13 @@ https://www.linkedin.com/learning/learning-c-sharp-8581491
 
 https://www.linkedin.com/learning/mern-essential-training-23737882
 
-https://www.linkedin.com/learning/learning-full-stack-javascript-development-mongodb-node-and-react-15581237
+https://www.linkedin.com/learning/learning-full-stack-javascript-development-mongodb-node-and-react-15581237 <span style="color: green;">Good</span>
 
 ## Django
 
 https://www.linkedin.com/learning/django-essential-training
 
-https://www.linkedin.com/learning/building-restful-web-apis-with-django
+https://www.linkedin.com/learning/building-restful-web-apis-with-django <span style="color: green;">Good</span>
 
 https://www.youtube.com/watch?v=tujhGdn1EMI
 
@@ -61,3 +61,15 @@ https://www.linkedin.com/learning/building-apps-with-ai-tools-chatgpt-semantic-k
 https://www.deeplearning.ai/short-courses/open-source-models-hugging-face/
 
 https://www.linkedin.com/learning/hands-on-generative-ai-with-diffusion-models-building-real-world-applications/
+
+## Security
+
+https://www.linkedin.com/learning/web-security-oauth-and-openid-connect-23016424
+
+https://www.linkedin.com/learning/react-authentication
+
+https://www.linkedin.com/learning/web-security-user-authentication-and-access-control-22779667
+
+https://www.linkedin.com/learning/securing-django-applications
+
+https://www.linkedin.com/learning/node-authentication
