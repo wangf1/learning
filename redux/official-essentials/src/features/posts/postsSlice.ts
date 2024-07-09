@@ -20,6 +20,14 @@ export const postsSlice = createAppSlice({
     addPost: create.reducer((state, action: PayloadAction<Post>) => {
       state.push(action.payload)
     }),
+    updatePost: create.reducer((state, action: PayloadAction<Post>) => {
+      const { id, title, content } = action.payload
+      const post = state.find(post => post.id === id)
+      if (post) {
+        post.title = title
+        post.content = content
+      }
+    }),
   }),
 
   selectors: {
@@ -30,4 +38,4 @@ export const postsSlice = createAppSlice({
 
 export const { selectAll, selectPost } = postsSlice.selectors
 
-export const { addPost } = postsSlice.actions
+export const { addPost, updatePost } = postsSlice.actions
