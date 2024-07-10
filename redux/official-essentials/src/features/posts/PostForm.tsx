@@ -1,21 +1,30 @@
+import { useAppSelector } from "@/src/app/hooks"
+import { selectAll } from "@/src/features/users/usersSlice"
 import type { ChangeEvent } from "react"
 import { useState } from "react"
 
 type PostFormProps = {
   initTitle?: string
   initContent?: string
-  onSubmit: (title: string, content: string) => void
+  initUserId?: string
+  onSubmit: (title: string, content: string, userId: string) => void
   buttonText: string
+  mode: "add" | "edit"
 }
 
 export default function PostForm({
   initTitle = "",
   initContent = "",
+  initUserId = "1",
   onSubmit,
-  buttonText = "Add Post",
+  buttonText,
+  mode,
 }: PostFormProps) {
   const [title, setTitle] = useState(initTitle)
   const [content, setContent] = useState(initContent)
+  const [userId, setUserId] = useState(initUserId)
+
+  const users = useAppSelector(selectAll)
 
   const onTitleChanged = (event: ChangeEvent<HTMLInputElement>): void => {
     setTitle(event.target.value)
@@ -25,12 +34,23 @@ export default function PostForm({
     setContent(event.target.value)
   }
 
+  const onAuthorChanged = (event: ChangeEvent<HTMLSelectElement>): void => {
+    setUserId(event.target.value)
+  }
+
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault()
-    onSubmit(title, content)
+    onSubmit(title, content, userId)
     setTitle("")
     setContent("")
+    setUserId("")
   }
+
+  const usersOptions = users.map(user => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ))
 
   return (
     <section
@@ -59,9 +79,20 @@ export default function PostForm({
             className="border-2 p-2 my-2 rounded-lg min-h-32"
           />
 
+          <label htmlFor="postAuthor">Author:</label>
+          <select
+            id="postAuthor"
+            value={userId}
+            onChange={onAuthorChanged}
+            disabled={mode === "edit"}
+          >
+            <option value=""></option>
+            {usersOptions}
+          </select>
+
           <button
             type="submit"
-            disabled={!title || !content}
+            disabled={!title || !content || !userId}
             onClick={handleSubmit}
             className="border-2 p-2 my-2 rounded-lg enabled:bg-blue-500 disabled:bg-gray-300"
           >

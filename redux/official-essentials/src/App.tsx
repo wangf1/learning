@@ -1,4 +1,6 @@
 import AddPostForm from "@/src/features/posts/AddPostForm"
+import EditPostForm from "@/src/features/posts/EditPostForm"
+import PostDetails from "@/src/features/posts/PostDetails"
 import PostsList from "@/src/features/posts/PostsList"
 import {
   Navigate,
@@ -7,8 +9,6 @@ import {
   Routes,
 } from "react-router-dom"
 import { Navbar } from "./app/Navbar"
-import SinglePostPage from "@/src/features/posts/SinglePostPage"
-import EditPostForm from "@/src/features/posts/EditPostForm"
 
 function App() {
   const HomeElement = (
@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={HomeElement} />
             <Route path="/posts" element={HomeElement} />
-            <Route path="/posts/:id" element={<SinglePostPage />} />
+            <Route path="/posts/:id" element={<PostDetails />} />
             <Route path="/posts/:id/edit" element={<EditPostForm />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

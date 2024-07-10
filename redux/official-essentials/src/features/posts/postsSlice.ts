@@ -5,11 +5,17 @@ export interface Post {
   id: number
   title: string
   content: string
+  userId: string
 }
 
 const initialState: Post[] = [
-  { id: 1, title: "First Post", content: "This is my first post" },
-  { id: 2, title: "Second Post", content: "This is my second post" },
+  { id: 1, title: "First Post", content: "This is my first post", userId: "1" },
+  {
+    id: 2,
+    title: "Second Post",
+    content: "This is my second post",
+    userId: "2",
+  },
 ]
 
 export const postsSlice = createAppSlice({
