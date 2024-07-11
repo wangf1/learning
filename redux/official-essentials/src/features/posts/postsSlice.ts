@@ -16,17 +16,17 @@ export type PostDTO = Omit<Post, "id" | "date"> & {
 const initialState: Post[] = [
   {
     id: nanoid(),
-    title: "First Post",
-    content: "This is my first post",
-    userId: "1",
-    date: new Date().toISOString(),
-  },
-  {
-    id: nanoid(),
     title: "Second Post",
     content: "This is my second post",
     userId: "2",
-    date: new Date().toISOString(),
+    date: new Date("2023-08-01T15:30:00Z").toISOString(),
+  },
+  {
+    id: nanoid(),
+    title: "First Post",
+    content: "This is my first post",
+    userId: "1",
+    date: new Date("2024-07-10T15:30:00Z").toISOString(),
   },
 ]
 
@@ -55,7 +55,8 @@ export const postsSlice = createAppSlice({
   }),
 
   selectors: {
-    selectAll: posts => posts,
+    selectAll: posts =>
+      posts.slice().sort((a, b) => b.date.localeCompare(a.date)),
     selectPost: (posts, id: string) => posts.find(post => post.id === id),
   },
 })
