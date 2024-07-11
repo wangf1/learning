@@ -7,11 +7,9 @@ export default function AddPostForm() {
   const posts = useAppSelector(selectAll)
 
   function onAddPost(title: string, content: string, userId: string): void {
-    const lastPost = posts.length > 0 ? posts[posts.length - 1] : null
-    const id = lastPost ? lastPost.id + 1 : 1
-    const newPost = { id, title, content, userId }
+    const newPost = { title, content, userId }
     dispatch(addPost(newPost))
   }
 
-  return <PostForm onSubmit={onAddPost} buttonText="Add Post" mode="add" />
+  return <PostForm onSubmit={onAddPost} mode="add" />
 }

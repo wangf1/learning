@@ -1,20 +1,32 @@
-import type { PayloadAction } from "@reduxjs/toolkit"
+import { nanoid, type PayloadAction } from "@reduxjs/toolkit"
 import { createAppSlice } from "../../app/createAppSlice"
 
 export interface Post {
-  id: number
+  id: string
   title: string
   content: string
   userId: string
+  date: string
+}
+
+export type PostDTO = Omit<Post, "id" | "date"> & {
+  id?: string
 }
 
 const initialState: Post[] = [
-  { id: 1, title: "First Post", content: "This is my first post", userId: "1" },
   {
-    id: 2,
+    id: nanoid(),
+    title: "First Post",
+    content: "This is my first post",
+    userId: "1",
+    date: new Date().toISOString(),
+  },
+  {
+    id: nanoid(),
     title: "Second Post",
     content: "This is my second post",
     userId: "2",
+    date: new Date().toISOString(),
   },
 ]
 
@@ -23,22 +35,28 @@ export const postsSlice = createAppSlice({
   initialState,
 
   reducers: create => ({
-    addPost: create.reducer((state, action: PayloadAction<Post>) => {
-      state.push(action.payload)
+    addPost: create.reducer((state, action: PayloadAction<PostDTO>) => {
+      const post: Post = {
+        ...action.payload,
+        id: nanoid(),
+        date: new Date().toISOString(),
+      }
+      state.push(post)
     }),
-    updatePost: create.reducer((state, action: PayloadAction<Post>) => {
+    updatePost: create.reducer((state, action: PayloadAction<PostDTO>) => {
       const { id, title, content } = action.payload
       const post = state.find(post => post.id === id)
       if (post) {
         post.title = title
         post.content = content
+        post.date = new Date().toISOString()
       }
     }),
   }),
 
   selectors: {
     selectAll: posts => posts,
-    selectPost: (posts, id) => posts.find(post => post.id === id),
+    selectPost: (posts, id: string) => posts.find(post => post.id === id),
   },
 })
 

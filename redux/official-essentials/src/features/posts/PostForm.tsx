@@ -8,7 +8,6 @@ type PostFormProps = {
   initContent?: string
   initUserId?: string
   onSubmit: (title: string, content: string, userId: string) => void
-  buttonText: string
   mode: "add" | "edit"
 }
 
@@ -17,7 +16,6 @@ export default function PostForm({
   initContent = "",
   initUserId = "1",
   onSubmit,
-  buttonText,
   mode,
 }: PostFormProps) {
   const [title, setTitle] = useState(initTitle)
@@ -57,7 +55,9 @@ export default function PostForm({
       className="border-2 p-6 my-2 min-w-[50%] max-w-fit rounded-lg
         bg-slate-100 mx-3"
     >
-      <h2 className="text-3xl font-bold">Add a New Post</h2>
+      <h2 className="text-3xl font-bold">
+        {mode === "add" ? "Add a New Post" : "Edit the Post"}{" "}
+      </h2>
       <form>
         <div className="flex flex-col">
           <label htmlFor="postTitle">Title:</label>
@@ -96,7 +96,7 @@ export default function PostForm({
             onClick={handleSubmit}
             className="border-2 p-2 my-2 rounded-lg enabled:bg-blue-500 disabled:bg-gray-300"
           >
-            {buttonText}
+            {mode === "add" ? "Add Post" : "Update Post"}
           </button>
         </div>
       </form>

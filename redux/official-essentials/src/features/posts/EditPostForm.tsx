@@ -7,9 +7,7 @@ export default function EditPostForm() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const post = useAppSelector(state =>
-    selectPost(state, parseInt(id ?? "0", 10)),
-  )
+  const post = useAppSelector(state => selectPost(state, id ?? ""))
   if (!post) {
     return <section>Post not found</section>
   }
@@ -24,7 +22,6 @@ export default function EditPostForm() {
       initContent={post.content}
       initUserId={post.userId}
       onSubmit={onSavePost}
-      buttonText="Save"
       mode="edit"
     />
   )
