@@ -1,8 +1,8 @@
 import { useAppSelector } from "@/src/app/hooks"
 import { PostAuthor } from "@/src/features/posts/PostAuthor"
 import { selectPost } from "@/src/features/posts/postsSlice"
+import ReactionButtons from "@/src/features/posts/ReactionButtons"
 import TimeAgo from "@/src/features/posts/TimeAgo"
-import { selectById } from "@/src/features/users/usersSlice"
 import { Link, useParams } from "react-router-dom"
 
 export default function PostDetails() {
@@ -11,9 +11,6 @@ export default function PostDetails() {
   if (!post) {
     return <section>Post not found</section>
   }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const user = useAppSelector(state => selectById(state, post.userId))
 
   return (
     <section>
@@ -29,6 +26,7 @@ export default function PostDetails() {
         <p className="first-letter:text-3xl first-letter:font-bold">
           {post.content}
         </p>
+        <ReactionButtons id={post.id} reactions={post.reactions} />
         <Link
           to={`/posts/${post.id}/edit`}
           className="text-blue-500 underline visited:text-purple-500"

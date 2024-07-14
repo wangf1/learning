@@ -1,13 +1,24 @@
 import { nanoid, type PayloadAction } from "@reduxjs/toolkit"
 import { createAppSlice } from "../../app/createAppSlice"
 
+export interface Reactions {
+  thumbsUp?: number
+  wow?: number
+  heart?: number
+  rocket?: number
+  coffee?: number
+}
+
 export interface Post {
   id: string
   title: string
   content: string
   userId: string
   date: string
+  reactions?: Reactions
 }
+
+export type ReactionType = keyof Reactions
 
 export type PostDTO = Omit<Post, "id" | "date"> & {
   id?: string
@@ -20,6 +31,11 @@ const initialState: Post[] = [
     content: "This is my second post",
     userId: "2",
     date: new Date("2023-08-01T15:30:00Z").toISOString(),
+    reactions: {
+      thumbsUp: 1,
+      wow: 2,
+      heart: 3,
+    },
   },
   {
     id: nanoid(),
@@ -52,6 +68,22 @@ export const postsSlice = createAppSlice({
         post.date = new Date().toISOString()
       }
     }),
+
+    reactToPost: create.reducer(
+      (
+        state,
+        action: PayloadAction<{ id: string; reaction: ReactionType }>,
+      ) => {
+        const { id, reaction } = action.payload
+        const post = state.find(post => post.id === id)
+        if (post) {
+          post.reactions = {
+            ...post.reactions,
+            [reaction]: (post.reactions?.[reaction] ?? 0) + 1,
+          }
+        }
+      },
+    ),
   }),
 
   selectors: {
@@ -63,4 +95,4 @@ export const postsSlice = createAppSlice({
 
 export const { selectAll, selectPost } = postsSlice.selectors
 
-export const { addPost, updatePost } = postsSlice.actions
+export const { addPost, updatePost, reactToPost } = postsSlice.actions
